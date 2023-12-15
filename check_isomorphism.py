@@ -7,11 +7,11 @@ from copy import deepcopy
 from itertools import permutations
 import numpy as np
 
-def check_isomorphism(graph1_dict, graph2_dict):
+def check_isomorphism(graph1_dict: dict, graph2_dict: dict)-> bool:
     """
     The main function to check if graphs are isomorphic.
     """
-    def graph_matrix_creation(graph_dict):
+    def graph_matrix_creation(graph_dict: dict)-> np.array:
         """
         Turn the graph from dictionary into a matrix.
         """
@@ -27,7 +27,7 @@ def check_isomorphism(graph1_dict, graph2_dict):
             list_of_rows.append(row)
         return np.array(list_of_rows)
 
-    def matrix_change(graph_matrix, init_permut, permut):
+    def matrix_change(graph_matrix: np.array, init_permut: tuple, permut: int)-> np.array:
         """
         The function with the main logic to return permutations.
         """
@@ -35,13 +35,13 @@ def check_isomorphism(graph1_dict, graph2_dict):
         graph_matrix[:, [*init_permut]] = graph_matrix[:, [*permut]]
         return graph_matrix
 
-    def check_vertices_number_inv(graph1_dict, graph2_dict):
+    def check_vertices_number_inv(graph1_dict: dict, graph2_dict: dict)-> bool:
         """
         Invariant 1: check if both graphs have equal amount of vertices.
         """
         return len(graph1_dict) == len(graph2_dict)
 
-    def check_edges_number_inv(graph1_dict, graph2_dict):
+    def check_edges_number_inv(graph1_dict: dict, graph2_dict: dict)-> bool:
         """
         Invariant 2: check if both graphs have equal amount of edges.
         """
@@ -53,7 +53,7 @@ def check_isomorphism(graph1_dict, graph2_dict):
             edges_double_number2 += len(value)
         return edges_double_number1 == edges_double_number2
 
-    def chech_degrees_of_vertices(graph1_dict, graph2_dict):
+    def chech_degrees_of_vertices(graph1_dict: dict, graph2_dict: dict)-> bool:
         """
         Invariant 3: check if both graphs have equal degrees.
         """
