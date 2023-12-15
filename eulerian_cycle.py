@@ -1,11 +1,10 @@
-'''
-This module provides functions to check if a graph 
-is connected and find the Eulerian cycle of a graph.
-'''
+""" 
+A module to find Euler's circut. 
+"""
 
-def is_connected(graph: dict, start: int | str) -> bool:
-    """ 
-    Check if the graph is connected. 
+def is_connected(graph, start):
+    """
+    Check if the graph is connected.
     """
     visited = set()
     def dfs(vertex):
@@ -16,9 +15,9 @@ def is_connected(graph: dict, start: int | str) -> bool:
     dfs(start)
     return len(visited) == len(graph)
 
-def eulerian_cycle(graph):
-    """ 
-    Return the Euler's circuit of the graph, if it exists. 
+def find_euler_circuit(graph):
+    """
+    Return the Euler's circuit of the graph, if it exists.
     """
     def has_even_degree(graph):
         return all(len(edges) % 2 == 0 for edges in graph.values())
@@ -30,7 +29,7 @@ def eulerian_cycle(graph):
                 return neighbor
         return None
 
-    if not has_even_degree(graph) or not is_connected(graph, [list(graph.keys())[0]]):
+    if not has_even_degree(graph) or not is_connected(graph, list(graph.keys())[0]):
         return None
 
     circuit = []
