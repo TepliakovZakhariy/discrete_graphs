@@ -3,9 +3,9 @@ This module provides a function to check if a given graph has a Hamiltonian cycl
 '''
 
 def hamiltonian_cycle(graph: dict) -> list | None:
-    """
+    '''
     Checks if a given graph has a Hamiltonian cycle.
-    """
+    '''
     if not graph or not all(graph.values()):
         return None
 
@@ -16,7 +16,6 @@ def hamiltonian_cycle(graph: dict) -> list | None:
         '''
         Depth-first search algorithm to find a Hamiltonian cycle in a graph.
         '''
-
         path.append(node)
 
         if len(path) == len(graph):
