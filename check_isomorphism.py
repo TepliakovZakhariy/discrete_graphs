@@ -15,6 +15,16 @@ def check_isomorphism(graph1_dict: dict, graph2_dict: dict)-> bool:
         """
         Turn the graph from dictionary into a matrix.
         """
+        def make_undirected(graph: dict)-> dict:
+            undirected_graph = {}
+            for vertex, edges in graph.items():
+                for edge in edges:
+                    undirected_graph.setdefault(vertex, []).append(edge)
+                    undirected_graph.setdefault(edge, []).append(vertex)
+            for vertex, edges in undirected_graph.items():
+                undirected_graph[vertex] = sorted(list(set(edges)))
+            return undirected_graph
+        graph_dict = make_undirected(graph_dict)
         list_of_rows = []
         list_of_vertices = list(graph_dict)
         for _, value in graph_dict.items():
